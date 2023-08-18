@@ -1,0 +1,80 @@
+
+  **Accidental Turntables: Learning 3D Pose by Watching Objects Turn**
+    [Zezhou Cheng^1](http://people.cs.umass.edu/~zezhoucheng), [Matheus Gadelha^2](http://mgadelha.me), [Subhransu Maji^1](http://people.cs.umass.edu/~smaji/)				
+    ^1 _University of Massachusetts - Amherst_ 
+    ^2 _Adobe Research_
+
+   <center>
+   <span style="color:red;font-size:20px">[[arXiv Paper](https://arxiv.org/abs/2212.06300)]</span>
+   </center>
+
+<center>
+<table>
+  <tr>
+    <td> <img src="figs/classic.png"  alt="1" width = 180px height = 180px ></td>
+    <td> <img src="figs/4.mp4.gif"  alt="1" width = 320px height =180px ></td>
+    <td> <img src="figs/poses.png"  alt="1" width = 120px height = 180px ></td>
+  </tr> 
+  <tr>
+    <td style="text-align: center">  <b>Classic turntable</b> </td>
+    <td colspan="2" style="text-align: center"> <b> Accidental turnable </b> <br> left: Internet video, right: SfM pose estimation and 3D reconstruction [(Youtube video link)](https://www.youtube.com/watch?v=8rFNRri8-TI) </td>
+
+
+  </tr> 
+
+</table>
+</center>
+
+
+We propose a technique for learning single-view 3D object pose estimation models by utilizing a new source of data --- in-the-wild videos where objects turn.  Such videos are prevalent in practice (e.g., cars in roundabouts, airplanes near runways) and easy to collect. We show that classical structure-from-motion algorithms, coupled with the recent advances in instance detection and feature matching, provides surprisingly accurate relative 3D pose estimation on such videos. We propose a multi-stage training scheme that first learns a canonical pose across a collection of videos and then supervises a model for single-view pose estimation. The proposed technique achieves competitive performance with respect to existing state-of-the-art on standard benchmarks for 3D pose estimation, without requiring any pose labels during training. We also contribute an Accidental Turntables Dataset, containing a challenging set of 41,212 images of cars in cluttered backgrounds, motion blur and illumination changes that serves as a benchmark for 3D pose estimation.
+
+
+Accidental Turntables Dataset
+==========================================================================================
+Accidental turntables are in-the-wild videos where objects turn. We show some samples from our dataset and the pseudo pose labels from structure-from-motion.
+
+## Dataset 
+The Accidental Turntables dataset consists of 313 car video clips downloaded from Youtube. 
+
+* The source Youtube videos of our dataset are listed below:
+	*  [video1](https://www.youtube.com/watch?v=8rFNRri8-TI), [video2](https://www.youtube.com/watch?v=Aqacvi267kk&t=53s), [video3](https://www.youtube.com/watch?v=5YbJhq1nltw), [video4](https://www.youtube.com/watch?v=Wl_8mypokYo), [video5](https://www.youtube.com/watch?v=hQWJC28WYNc), [video6](https://www.youtube.com/watch?v=MB7lzwzZOio).
+* Download the pose annotations of Accidental Turntable dataset [here (coming soon)]().
+* Download pretrained models [here (coming soon)]()
+
+## Structure-from-Motion (SfM)
+Our pose estimation models are trained with 3D poses estimated by SfM. We find that SfM with Superpoint and SuperGLUE provides much more accurate pose estimations compared to the default setting of COLMAP (i.e., SIFT descriptor and nearest neighbor matching with mutual checking).
+
+The animations below present the estimated poses (2nd-3rd columns) and dense 3D (last colume) reconstructions from SfM on two accidential turntable videos. In the second column, we rotate xyz-axes with the relative rotations estimated by SfM, assuming the car in the 1st video frame has identity rotation matrix. The third column presents a bird-view of 3D rotation, with a red ball representing the tip of red axis.
+
+
+<table>
+  <tr>
+    <td> <img src="figs/poses/2_pose2.gif"  alt="1" width = 512px height = 144px ></td>
+    <td> <img src="figs/poses/2_3d.gif"  alt="1" width = 144px height = 144px ></td>
+  </tr> 
+  <tr>
+    <td> <img src="figs/poses/4_pose2.gif"  alt="1" width = 512px height = 144px ></td>
+    <td> <img src="figs/poses/4_3d.gif"  alt="1" width = 144px height = 144px ></td>
+  </tr>
+  <tr>
+    <td colspan="6" style="text-align: center;font-size:15px"> Source: [Youtube](https://www.youtube.com/watch?v=8rFNRri8-TI) @[NM2255 Car HD Videos](https://www.youtube.com/@NM2255)</td>
+  </tr>
+</table>
+
+
+Source code
+==========================================================================================
+
+[Github link (coming soon)]()
+
+
+Acknowledgements
+==========================================================================================
+The following codebases have helped us a lot in this project: [PoseContrast](https://github.com/YoungXIAO13/PoseContrast), [Detectron2](https://github.com/facebookresearch/detectron2), [HLOC](https://github.com/cvg/Hierarchical-Localization), [COLMAP](https://colmap.github.io/). We thank all developers and authors for releasing and maintaining these libraries. 
+We sincerely appreciate the following Youtube channels where the Accidental Turntables are collected: [@NM2255](https://www.youtube.com/@NM2255), [@DutchMotorsport](https://www.youtube.com/@DutchMotorsport), [@Gumbal](https://www.youtube.com/@Gumbal), [@AllCarsChannels](https://www.youtube.com/@AllCarsChannel), [@statesidesupercars](https://www.youtube.com/@statesidesupercars).
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+<style>
+h1:before, h2:before { content: none; }
+body{max-width: 900px}
+</style>
